@@ -1,0 +1,35 @@
+.order-lists {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+}
+li {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  border-radius: 5px;
+  border-style: solid;
+  background-color: #ffffff33;
+  border-color: white;
+  width: 300px;
+  padding: 10px;
+  margin: 20px;
+  text-decoration: none;
+}
+.loader {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 350px;
+}
+.img-team {
+  height: 100px;
+  width: 100px;
+}
+.h1 {
+  font-size: 20px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: white;
+  text-decoration: none;
+}
