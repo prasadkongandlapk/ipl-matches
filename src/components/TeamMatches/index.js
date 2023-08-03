@@ -2,44 +2,54 @@ import './index.css'
 import {Component} from 'react'
 
 class TeamMatches extends Component {
-  state = {recentMatches: [], banner: ''}
+  state = {teamMatchesData: []}
 
   componentDidCatch() {
     this.getMatchResult()
   }
 
+  getFormatedData = dat => ({
+    umpires: dat.umpires,
+    result: dat.result,
+    manOfTheMatch: dat.man_of_the_match,
+    id: dat.id,
+    date: dat.date,
+    venue: dat.venue,
+    competingTeam: dat.competing_team,
+    competingTeamLogo: dat.competing_team_logo,
+    // use value of the key 'competing_team' for alt as `competing team ${competing_team}`
+    firstInnings: dat.first_innings,
+    secondInnings: dat.second_innings,
+    matchStatus: dat.match_status,
+  })
+
   getMatchResult = async () => {
-    const {id} = this.props
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+
     const response = await fetch(`https://apis.ccbp.in/ipl/${id}`)
     const data = await response.json()
 
-    const teamBannerUrl = data.team_banner_url
-    const latestMatchDetails = data.latest_match_details
-
-    const matchesResults = data.recent_matches.map(each => ({
-      umpires: each.umpires,
-      result: each.result,
-      manOfTheMatch: each.man_of_the_match,
-      id: each.id,
-      date: each.date,
-      venue: each.venue,
-      competingTeam: each.competing_team,
-      competingTeamLogo: each.competing_team_logo,
-      // use value of the key 'competing_team' for alt as `competing team ${competing_team}`
-      firstInnings: each.first_innings,
-      secondInnings: each.second_innings,
-      matchStatus: each.match_status,
-    }))
-    this.setState({banner: teamBannerUrl, recentMatches: matchesResults})
+    const formatedData = {
+      teamBanner: data.team_banner_url,
+      latestMatch: this.getFormatedData(data.latest_match_details),
+      recentMatches: data.recent_matches.map(each =>
+        this.getFormatedData(each),
+      ),
+    }
+    this.setState({
+      teamMatchesData: formatedData,
+    })
   }
 
   render() {
-    const {recentMatches, banner} = this.state
+    const {teamMatchesData} = this.state
+    const {teamBanner} = teamMatchesData
 
     return (
       <div className="team-matches-bg">
-        <img src={banner} src="a" />
-        <p>{recentMatches.venue}</p>
+        <img src={teamBanner} alt="df" />
       </div>
     )
   }
