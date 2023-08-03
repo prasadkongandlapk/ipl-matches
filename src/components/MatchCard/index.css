@@ -1,1 +1,11 @@
-/* Write your CSS here */
+.match-card-bg {
+  background-color: #1e293b;
+  border-radius: 5px;
+  border: 5px;
+  border-style: solid;
+  margin: 10px;
+  border-color: #f26d22;
+  padding: 10px;
+  width: 150px;
+  padding: 10px;
+}

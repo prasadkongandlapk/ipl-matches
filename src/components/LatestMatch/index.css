@@ -1,7 +1,25 @@
 .latest-match-bg {
   background-color: #1e293b;
   border-radius: 5px;
+  border: 5px;
   border-style: solid;
   margin: 10px;
   border-color: #f26d22;
+  padding: 10px;
+  color: white;
+  font-family: bree Serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 220px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.ajkdjf {
+  height: 100px;
+  width: 100px;
+}
+.dsajfkl {
+  font-size: 10px;
 }

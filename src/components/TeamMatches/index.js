@@ -1,6 +1,7 @@
 import './index.css'
 import {Component} from 'react'
 import LatestMatch from '../LatestMatch'
+import MatchCard from '../MatchCard'
 
 class TeamMatches extends Component {
   state = {teamMatchesData: {}}
@@ -50,7 +51,10 @@ class TeamMatches extends Component {
     return (
       <div className="team-matches-bg">
         <img className="team-banner" src={teamBanner} alt="df" />
+        <h2>Latest Matches</h2>
+
         <LatestMatch latestMatchDetails={latestMatch} />
+        <MatchCard recentMatchesDetails={recentMatches} />
       </div>
     )
   }
