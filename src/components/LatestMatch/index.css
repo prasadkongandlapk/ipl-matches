@@ -1,1 +1,7 @@
-/* Write your CSS here */
+.latest-match-bg {
+  background-color: #1e293b;
+  border-radius: 5px;
+  border-style: solid;
+  margin: 10px;
+  border-color: #f26d22;
+}

@@ -1,10 +1,11 @@
 import './index.css'
 import {Component} from 'react'
+import LatestMatch from '../LatestMatch'
 
 class TeamMatches extends Component {
-  state = {teamMatchesData: []}
+  state = {teamMatchesData: {}}
 
-  componentDidCatch() {
+  componentDidMount() {
     this.getMatchResult()
   }
 
@@ -17,7 +18,6 @@ class TeamMatches extends Component {
     venue: dat.venue,
     competingTeam: dat.competing_team,
     competingTeamLogo: dat.competing_team_logo,
-    // use value of the key 'competing_team' for alt as `competing team ${competing_team}`
     firstInnings: dat.first_innings,
     secondInnings: dat.second_innings,
     matchStatus: dat.match_status,
@@ -45,11 +45,12 @@ class TeamMatches extends Component {
 
   render() {
     const {teamMatchesData} = this.state
-    const {teamBanner} = teamMatchesData
+    const {teamBanner, recentMatches, latestMatch} = teamMatchesData
 
     return (
       <div className="team-matches-bg">
-        <img src={teamBanner} alt="df" />
+        <img className="team-banner" src={teamBanner} alt="df" />
+        <LatestMatch latestMatchDetails={latestMatch} />
       </div>
     )
   }

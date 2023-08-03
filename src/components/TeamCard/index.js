@@ -36,7 +36,7 @@ class TeamCard extends Component {
             <Link to={`/team-matches/${each.id}`}>
               <li>
                 <img className="img-team" src={each.teamImageUrl} alt="a" />
-                <h1 className="h1">{each.name}</h1>
+                <p>{each.name}</p>
               </li>
             </Link>
           ))

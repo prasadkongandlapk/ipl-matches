@@ -2,4 +2,11 @@
   background-image: linear-gradient(to bottom, #a4261d, #5755a7);
   background-size: cover;
   height: 100vh;
+  padding: 50px;
+  width: 100vw;
+}
+.team-banner {
+  height: 200px;
+  width: 900px;
+  text-align: center;
 }
