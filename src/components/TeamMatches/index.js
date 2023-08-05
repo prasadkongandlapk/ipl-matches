@@ -54,7 +54,9 @@ class TeamMatches extends Component {
         <h2>Latest Matches</h2>
 
         <LatestMatch latestMatchDetails={latestMatch} />
-        <MatchCard recentMatchesDetails={recentMatches} />
+        {recentMatches.map(each => (
+          <MatchCard recentMatchesDetails={each} />
+        ))}
       </div>
     )
   }
