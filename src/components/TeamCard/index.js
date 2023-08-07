@@ -1,49 +1,17 @@
 import './index.css'
-import {Component} from 'react'
 import {Link} from 'react-router-dom'
-import Loader from 'react-loader-spinner'
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
-class TeamCard extends Component {
-  state = {matches: [], isLoading: true}
-
-  componentDidMount() {
-    this.getMatches()
-  }
-
-  getMatches = async () => {
-    const response = await fetch('https://apis.ccbp.in/ipl')
-    const data = await response.json()
-
-    const formatedData = data.teams.map(each => ({
-      name: each.name,
-      id: each.id,
-      teamImageUrl: each.team_image_url,
-    }))
-    this.setState({matches: formatedData, isLoading: false})
-  }
-
-  render() {
-    const {matches, isLoading} = this.state
-    return (
-      <ul className="order-lists">
-        {isLoading === true ? (
-          <div className="loader">
-            <Loader type="TailSpin" />
-          </div>
-        ) : (
-          matches.map(each => (
-            <Link to={`/team-matches/${each.id}`}>
-              <li>
-                <img className="img-team" src={each.teamImageUrl} alt="a" />
-                <p>{each.name}</p>
-              </li>
-            </Link>
-          ))
-        )}
-      </ul>
-    )
-  }
+const TeamCard = props => {
+  const {teamDetails} = props
+  const {id, teamImageUrl, name} = teamDetails
+  return (
+    <Link to={`/team-matches/${id}`}>
+      <li>
+        <img className="img-team" src={teamImageUrl} alt={name} />
+        <p>{name}</p>
+      </li>
+    </Link>
+  )
 }
 
 export default TeamCard

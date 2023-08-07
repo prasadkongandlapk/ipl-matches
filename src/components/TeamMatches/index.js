@@ -1,10 +1,12 @@
 import './index.css'
 import {Component} from 'react'
+import Loader from 'react-loader-spinner'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import LatestMatch from '../LatestMatch'
 import MatchCard from '../MatchCard'
 
 class TeamMatches extends Component {
-  state = {teamMatchesData: {}}
+  state = {teamMatchesData: {}, isLoading: true}
 
   componentDidMount() {
     this.getMatchResult()
@@ -25,10 +27,9 @@ class TeamMatches extends Component {
   })
 
   getMatchResult = async () => {
-    const {match} = this.props
+    const {match, history} = this.props
     const {params} = match
     const {id} = params
-
     const response = await fetch(`https://apis.ccbp.in/ipl/${id}`)
     const data = await response.json()
 
@@ -41,22 +42,32 @@ class TeamMatches extends Component {
     }
     this.setState({
       teamMatchesData: formatedData,
+      isLoading: false,
     })
   }
 
   render() {
-    const {teamMatchesData} = this.state
+    const {teamMatchesData, isLoading} = this.state
     const {teamBanner, recentMatches, latestMatch} = teamMatchesData
 
     return (
       <div className="team-matches-bg">
-        <img className="team-banner" src={teamBanner} alt="df" />
-        <h2>Latest Matches</h2>
-
-        <LatestMatch latestMatchDetails={latestMatch} />
-        {recentMatches.map(each => (
-          <MatchCard recentMatchesDetails={each} />
-        ))}
+        {isLoading ? (
+          <div testid="loader" className="load">
+            <Loader type="TailSpin" />
+          </div>
+        ) : (
+          <div>
+            <img className="team-banner" src={teamBanner} alt="team banner" />
+            <h2>Latest Matches</h2>
+            <LatestMatch latestMatchDetails={latestMatch} />
+            <ul className="fdasjllj">
+              {recentMatches.map(each => (
+                <MatchCard key={each.id} recentMatchesDetails={each} />
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     )
   }

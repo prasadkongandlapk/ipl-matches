@@ -9,3 +9,23 @@
   width: 150px;
   padding: 10px;
 }
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
+.bg-match {
+  background-color: #1e293b;
+  border-radius: 5px;
+  color: white;
+  font-family: bree Serif;
+  width: 250px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 7px;
+}
+.fdsadsfj {
+  height: 50px;
+  width: 50px;
+}
